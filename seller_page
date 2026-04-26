@@ -3,200 +3,279 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Product Registration</title>
+<title>Register New Product | Seller Central</title>
 <style>
   :root {
-    --primary: #4f46e5;
-    --surface: #ffffff;
-    --bg: #f3f4f6;
-    --text: #1f2937;
-    --border: #d1d5db;
+    /* Apple Palette */
+    --primary: #0071e3; /* Modern Apple Blue */
+    --text-main: #1d1d1f;
+    --text-sec: #86868b;
+    --bg-main: #f5f5f7;
+    --bg-white: #ffffff;
+    --border: #d2d2d7;
+    --success: #32d74b;
   }
   
   body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--bg);
-    color: var(--text);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Myriad Set Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* Success Notification */
+  .success-banner {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--success);
+    color: white;
+    text-align: center;
+    padding: 16px 0;
+    font-weight: 500;
+    z-index: 1000;
+    animation: slideDown 0.5s ease-out;
+  }
+
+  /* Full Screen Layout Container */
+  .main-wrapper {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 60px;
+    gap: 60px;
+  }
+
+  /* Content Sections (Left and Right) */
+  .content-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  /* Left Side: Product Details & Hero Title */
+  .left-side {
+    position: sticky;
+    top: 60px;
+    height: calc(100vh - 120px);
+  }
+
+  .left-side h1 {
+    font-size: 64px;
+    line-height: 1.0625;
+    font-weight: 700;
+    letter-spacing: -0.009em;
+    margin: 0 0 20px 0;
+  }
+
+  .left-side p {
+    font-size: 24px;
+    line-height: 1.33337;
+    color: var(--text-sec);
+    max-width: 480px;
+    margin: 0;
+  }
+
+  /* Right Side: Large Card for Form */
+  .form-card {
+    background: var(--bg-white);
+    padding: 60px;
+    border-radius: 28px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.03);
     box-sizing: border-box;
   }
-  
-  .container {
-    background: var(--surface);
-    padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-    width: 100%;
-    max-width: 500px;
+
+  .form-card h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+    font-weight: 600;
   }
-  
-  h2 {
-    margin-top: 0;
-    margin-bottom: 24px;
-    color: #111827;
-  }
-  
+
+  /* Form Elements - Apple Style */
   .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
-  
+
   label {
     display: block;
-    margin-bottom: 8px;
-    font-weight: 500;
+    margin-bottom: 10px;
     font-size: 14px;
+    color: var(--text-sec);
+    font-weight: 400;
   }
-  
+
   input[type="text"],
   input[type="number"],
   select,
   textarea {
     width: 100%;
-    padding: 12px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
+    padding: 20px;
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
     box-sizing: border-box;
-    font-family: inherit;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-size: 16px;
+    transition: all 0.2s ease-in-out;
+    background-color: #fafafa;
   }
-  
+
   input:focus, 
   select:focus, 
   textarea:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.1);
+    background-color: var(--bg-white);
+  }
+
+  /* Large Character Counter for Description */
+  .textarea-container {
+    position: relative;
   }
   
+  .char-count {
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    font-size: 12px;
+    color: var(--text-sec);
+    pointer-events: none;
+  }
+
+  /* Image Upload Area */
+  .image-upload {
+    border: 1.5px dashed var(--border);
+    padding: 60px 20px;
+    text-align: center;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #fafafa;
+    overflow: hidden;
+  }
+  
+  .image-upload:hover {
+    background: #f1f1f3;
+    border-color: #a0a0a5;
+  }
+  
+  #preview {
+    max-width: 100%;
+    max-height: 300px;
+    display: none;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-top: 15px;
+  }
+
+  #uploadText {
+    color: var(--primary);
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  /* Apple Style Primary Button */
+  .btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 18px;
+    width: 100%;
+    border-radius: 16px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .btn:hover {
+    background: #0077ed;
+  }
+  
+  .btn:active {
+    transform: scale(0.97);
+  }
+
+  /* Flex Rows for Fields */
   .flex-row {
     display: flex;
-    gap: 16px;
+    gap: 20px;
   }
   
   .flex-col {
     flex: 1;
   }
-  
-  .image-upload {
-    border: 2px dashed var(--border);
-    padding: 30px 20px;
-    text-align: center;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s ease, border-color 0.3s ease;
-    position: relative;
-  }
-  
-  .image-upload:hover {
-    background: #f9fafb;
-    border-color: var(--primary);
-  }
-  
-  #preview {
-    max-width: 100%;
-    max-height: 180px;
-    margin-top: 10px;
-    display: none;
-    border-radius: 8px;
-    object-fit: cover;
-  }
-  
-  .btn {
-    background: var(--primary);
-    color: white;
-    border: none;
-    padding: 14px;
-    width: 100%;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: transform 0.1s ease, background 0.3s ease;
-  }
-  
-  .btn:hover {
-    background: #4338ca;
-  }
-  
-  .btn:active {
-    transform: scale(0.98);
-  }
-  
-  .char-count {
-    text-align: right;
-    font-size: 12px;
-    color: #6b7280;
-    margin-top: 6px;
-  }
-  
-  .success-message {
-    display: none;
-    background: #10b981;
-    color: white;
-    padding: 14px;
-    border-radius: 8px;
-    margin-bottom: 24px;
-    text-align: center;
-    font-weight: 500;
-    animation: fadeIn 0.4s ease;
-  }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
+
+  @keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
   }
 </style>
 </head>
 <body>
 
-<div class="container">
-  <div class="success-message" id="successMsg">Product listed successfully!</div>
-  <h2>Register New Product</h2>
-  <form id="productForm">
-    
-    <div class="form-group">
-      <label for="productName">Product Name</label>
-      <input type="text" id="productName" required placeholder="Enter product name">
-    </div>
+<div class="success-banner" id="successBanner">Product listed successfully. Welcome to Seller Central.</div>
 
-    <div class="form-group flex-row">
-      <div class="flex-col">
-        <label for="price">Price USD</label>
-        <input type="number" id="price" required min="0" step="0.01" placeholder="0.00">
-      </div>
-      <div class="flex-col">
-        <label for="category">Category</label>
-        <select id="category" required>
-          <option value="">Select category</option>
-          <option value="electronics">Electronics</option>
-          <option value="apparel">Apparel</option>
-          <option value="home">Home Goods</option>
-        </select>
-      </div>
-    </div>
+<div class="main-wrapper">
+  <div class="content-section left-side">
+    <h1>List your new innovation.</h1>
+    <p>Complete the details on the right to register your new product and reach customers worldwide.</p>
+  }
+  </div>
 
-    <div class="form-group">
-      <label>Product Image</label>
-      <div class="image-upload" id="dropZone" onclick="document.getElementById('imageInput').click()">
-        <span id="uploadText">Click to browse and upload an image</span>
-        <input type="file" id="imageInput" accept="image/*" style="display: none;">
-        <img id="preview" alt="User uploaded image preview">
-      </div>
-    </div>
+  <div class="content-section">
+    <div class="form-card">
+      <h2>Product Details</h2>
+      <form id="productForm">
+        
+        <div class="form-group">
+          <label for="productName">Product Name</label>
+          <input type="text" id="productName" required placeholder="Give your product a powerful name.">
+        </div>
 
-    <div class="form-group">
-      <label for="description">Description</label>
-      <textarea id="description" rows="4" required placeholder="Describe your product details here..."></textarea>
-      <div class="char-count"><span id="currentChars">0</span> / 200</div>
-    </div>
+        <div class="form-group flex-row">
+          <div class="flex-col">
+            <label for="price">Price (USD)</label>
+            <input type="number" id="price" required min="0" step="0.01" placeholder="e.g. 999.00">
+          </div>
+          <div class="flex-col">
+            <label for="category">Category</label>
+            <select id="category" required>
+              <option value="" disabled selected>Select category...</option>
+              <option value="iphone">Smartphones</option>
+              <option value="mac">Computers</option>
+              <option value="wearables">Wearables</option>
+              <option value="accessories">Accessories</option>
+            </select>
+          </div>
+        </div>
 
-    <button type="submit" class="btn">Submit Product</button>
-  </form>
+        <div class="form-group">
+          <label>Product Images</label>
+          <div class="image-upload" id="dropZone" onclick="document.getElementById('imageInput').click()">
+            <span id="uploadText">Click or Drag to Upload Image</span>
+            <input type="file" id="imageInput" accept="image/*" style="display: none;">
+            <img id="preview" alt="User uploaded image preview">
+          </div>
+        </div>
+
+        <div class="form-group textarea-container">
+          <label for="description">Product Description</label>
+          <textarea id="description" rows="6" required placeholder="Describe what makes your product remarkable..."></textarea>
+          <div class="char-count"><span id="currentChars">0</span> / 200</div>
+        </div>
+
+        <button type="submit" class="btn">Register Product</button>
+      </form>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -206,21 +285,23 @@
   const description = document.getElementById('description');
   const currentChars = document.getElementById('currentChars');
   const productForm = document.getElementById('productForm');
-  const successMsg = document.getElementById('successMsg');
+  const successBanner = document.getElementById('successBanner');
 
+  // Interactive Element 1: Image Upload Preview
   imageInput.addEventListener('change', function() {
     const file = this.files[0];
     if (file) {
       const reader = new FileReader();
       reader.addEventListener('load', function() {
         preview.src = this.result;
-        preview.style.display = 'inline-block';
+        preview.style.display = 'block';
         uploadText.style.display = 'none';
       });
       reader.readAsDataURL(file);
     }
   });
 
+  // Interactive Element 2: Dynamic Character Counter
   description.addEventListener('input', function() {
     const length = this.value.length;
     if (length > 200) {
@@ -229,18 +310,24 @@
     currentChars.textContent = this.value.length;
   });
 
+  // Interactive Element 3: Form Submission Success Feedback
   productForm.addEventListener('submit', function(event) {
-    event.preventDefault();
+    event.preventDefault(); // Prevent actual submission
     
-    successMsg.style.display = 'block';
+    // Show Apple-style success banner
+    successBanner.style.display = 'block';
     
+    // Scroll to top to see banner
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // Reset form after a delay and hide banner
     setTimeout(() => {
       productForm.reset();
       preview.style.display = 'none';
       uploadText.style.display = 'inline-block';
       currentChars.textContent = '0';
-      successMsg.style.display = 'none';
-    }, 3000);
+      successBanner.style.display = 'none';
+    }, 3500); // Wait 3.5 seconds
   });
 </script>
 </body>
