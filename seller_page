@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Registration</title>
+<style>
+  :root {
+    --primary: #4f46e5;
+    --surface: #ffffff;
+    --bg: #f3f4f6;
+    --text: #1f2937;
+    --border: #d1d5db;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .container {
+    background: var(--surface);
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  h2 {
+    margin-top: 0;
+    margin-bottom: 24px;
+    color: #111827;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 14px;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: inherit;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  input:focus, 
+  select:focus, 
+  textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+  }
+  
+  .flex-row {
+    display: flex;
+    gap: 16px;
+  }
+  
+  .flex-col {
+    flex: 1;
+  }
+  
+  .image-upload {
+    border: 2px dashed var(--border);
+    padding: 30px 20px;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, border-color 0.3s ease;
+    position: relative;
+  }
+  
+  .image-upload:hover {
+    background: #f9fafb;
+    border-color: var(--primary);
+  }
+  
+  #preview {
+    max-width: 100%;
+    max-height: 180px;
+    margin-top: 10px;
+    display: none;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  
+  .btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 14px;
+    width: 100%;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.1s ease, background 0.3s ease;
+  }
+  
+  .btn:hover {
+    background: #4338ca;
+  }
+  
+  .btn:active {
+    transform: scale(0.98);
+  }
+  
+  .char-count {
+    text-align: right;
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: 6px;
+  }
+  
+  .success-message {
+    display: none;
+    background: #10b981;
+    color: white;
+    padding: 14px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    text-align: center;
+    font-weight: 500;
+    animation: fadeIn 0.4s ease;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="success-message" id="successMsg">Product listed successfully!</div>
+  <h2>Register New Product</h2>
+  <form id="productForm">
+    
+    <div class="form-group">
+      <label for="productName">Product Name</label>
+      <input type="text" id="productName" required placeholder="Enter product name">
+    </div>
+
+    <div class="form-group flex-row">
+      <div class="flex-col">
+        <label for="price">Price USD</label>
+        <input type="number" id="price" required min="0" step="0.01" placeholder="0.00">
+      </div>
+      <div class="flex-col">
+        <label for="category">Category</label>
+        <select id="category" required>
+          <option value="">Select category</option>
+          <option value="electronics">Electronics</option>
+          <option value="apparel">Apparel</option>
+          <option value="home">Home Goods</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Product Image</label>
+      <div class="image-upload" id="dropZone" onclick="document.getElementById('imageInput').click()">
+        <span id="uploadText">Click to browse and upload an image</span>
+        <input type="file" id="imageInput" accept="image/*" style="display: none;">
+        <img id="preview" alt="User uploaded image preview">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" rows="4" required placeholder="Describe your product details here..."></textarea>
+      <div class="char-count"><span id="currentChars">0</span> / 200</div>
+    </div>
+
+    <button type="submit" class="btn">Submit Product</button>
+  </form>
+</div>
+
+<script>
+  const imageInput = document.getElementById('imageInput');
+  const preview = document.getElementById('preview');
+  const uploadText = document.getElementById('uploadText');
+  const description = document.getElementById('description');
+  const currentChars = document.getElementById('currentChars');
+  const productForm = document.getElementById('productForm');
+  const successMsg = document.getElementById('successMsg');
+
+  imageInput.addEventListener('change', function() {
+    const file = this.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.addEventListener('load', function() {
+        preview.src = this.result;
+        preview.style.display = 'inline-block';
+        uploadText.style.display = 'none';
+      });
+      reader.readAsDataURL(file);
+    }
+  });
+
+  description.addEventListener('input', function() {
+    const length = this.value.length;
+    if (length > 200) {
+      this.value = this.value.substring(0, 200);
+    }
+    currentChars.textContent = this.value.length;
+  });
+
+  productForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    successMsg.style.display = 'block';
+    
+    setTimeout(() => {
+      productForm.reset();
+      preview.style.display = 'none';
+      uploadText.style.display = 'inline-block';
+      currentChars.textContent = '0';
+      successMsg.style.display = 'none';
+    }, 3000);
+  });
+</script>
+</body>
+</html>
