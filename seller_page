@@ -3,105 +3,192 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Register New Product | Seller Central</title>
+<title>Product Launch Center Pro</title>
 <style>
   :root {
-    /* Apple Palette */
-    --primary: #0071e3; /* Modern Apple Blue */
+    --primary: #0071e3;
     --text-main: #1d1d1f;
     --text-sec: #86868b;
     --bg-main: #f5f5f7;
-    --bg-white: #ffffff;
+    --bg-card: #ffffff;
     --border: #d2d2d7;
-    --success: #32d74b;
+    --glass-bg: rgba(255, 255, 255, 0.5);
+    --glass-border: rgba(255, 255, 255, 0.6);
+    --blob-1: #ffb2e6;
+    --blob-2: #a1c4fd;
+    --blob-3: #c2e9fb;
+    --gradient-1: #f0f4fd;
+    --gradient-2: #f5f5f7;
+    --gradient-3: #e0eafc;
+    --gradient-4: #cfdef3;
   }
   
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Myriad Set Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    background-color: var(--bg-main);
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
     color: var(--text-main);
     margin: 0;
     padding: 0;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    background: linear-gradient(-45deg, var(--gradient-1), var(--gradient-2), var(--gradient-3), var(--gradient-4));
+    background-size: 400% 400%;
+    animation: gradientFlow 10s ease infinite;
     overflow-x: hidden;
   }
 
-  /* Success Notification */
-  .success-banner {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: var(--success);
-    color: white;
-    text-align: center;
-    padding: 16px 0;
-    font-weight: 500;
-    z-index: 1000;
-    animation: slideDown 0.5s ease-out;
+  @keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 
-  /* Full Screen Layout Container */
+  .bg-blobs {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+  }
+  
+  .blob {
+    position: absolute;
+    filter: blur(80px);
+    -webkit-filter: blur(80px);
+    border-radius: 50%;
+    opacity: 0.7;
+    will-change: transform;
+  }
+
+  .blob-1 {
+    width: 600px; height: 600px;
+    background: var(--blob-1);
+    top: -100px; left: -100px;
+    animation: float1 8s infinite ease-in-out alternate;
+  }
+
+  .blob-2 {
+    width: 700px; height: 700px;
+    background: var(--blob-2);
+    bottom: -200px; right: -100px;
+    animation: float2 10s infinite ease-in-out alternate-reverse;
+  }
+
+  .blob-3 {
+    width: 500px; height: 500px;
+    background: var(--blob-3);
+    top: 30%; left: 40%;
+    animation: float3 9s infinite ease-in-out alternate;
+  }
+
+  @keyframes float1 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    100% { transform: translate3d(20vw, 15vh, 0) scale(1.2); }
+  }
+
+  @keyframes float2 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    100% { transform: translate3d(-25vw, -20vh, 0) scale(1.1); }
+  }
+
+  @keyframes float3 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    100% { transform: translate3d(15vw, -25vh, 0) scale(1.3); }
+  }
+
   .main-wrapper {
     display: flex;
     min-height: 100vh;
     width: 100%;
     box-sizing: border-box;
-    padding: 60px;
-    gap: 60px;
+    padding: 80px 40px 40px 40px;
+    gap: 40px;
   }
 
-  /* Content Sections (Left and Right) */
-  .content-section {
+  .preview-section {
     flex: 1;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
-
-  /* Left Side: Product Details & Hero Title */
-  .left-side {
+    justify-content: center;
+    align-items: flex-start;
     position: sticky;
-    top: 60px;
+    top: 80px;
     height: calc(100vh - 120px);
   }
 
-  .left-side h1 {
-    font-size: 64px;
-    line-height: 1.0625;
-    font-weight: 700;
-    letter-spacing: -0.009em;
-    margin: 0 0 20px 0;
+  .device-preview {
+    width: 100%;
+    max-width: 440px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid var(--glass-border);
+    border-radius: 32px;
+    padding: 30px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.1);
   }
 
-  .left-side p {
-    font-size: 24px;
-    line-height: 1.33337;
+  .preview-image-container {
+    width: 100%;
+    height: 320px;
+    background: var(--bg-card);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+
+  .preview-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+  }
+
+  .preview-placeholder {
     color: var(--text-sec);
-    max-width: 480px;
-    margin: 0;
+    font-size: 15px;
+    font-weight: 500;
   }
 
-  /* Right Side: Large Card for Form */
+  .preview-info h3 {
+    margin: 0 0 10px 0;
+    font-size: 26px;
+    font-weight: 700;
+  }
+
+  .preview-price {
+    font-size: 22px;
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .preview-desc {
+    font-size: 15px;
+    color: var(--text-sec);
+    line-height: 1.6;
+  }
+
+  .form-section {
+    flex: 1.2;
+    padding-bottom: 40px;
+  }
+
   .form-card {
-    background: var(--bg-white);
-    padding: 60px;
-    border-radius: 28px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.03);
-    box-sizing: border-box;
+    background: var(--bg-card);
+    padding: 50px;
+    border-radius: 32px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
   }
 
   .form-card h2 {
-    font-size: 32px;
+    font-size: 36px;
+    margin-top: 0;
     margin-bottom: 40px;
-    font-weight: 600;
+    font-weight: 700;
   }
 
-  /* Form Elements - Apple Style */
   .form-group {
-    margin-bottom: 30px;
+    margin-bottom: 28px;
   }
 
   label {
@@ -109,101 +196,30 @@
     margin-bottom: 10px;
     font-size: 14px;
     color: var(--text-sec);
-    font-weight: 400;
+    font-weight: 600;
   }
 
   input[type="text"],
   input[type="number"],
-  select,
   textarea {
     width: 100%;
-    padding: 20px;
+    padding: 18px;
     border: 1.5px solid var(--border);
     border-radius: 14px;
     box-sizing: border-box;
     font-size: 16px;
-    transition: all 0.2s ease-in-out;
-    background-color: #fafafa;
+    transition: all 0.3s;
+    background-color: transparent;
+    color: var(--text-main);
   }
 
   input:focus, 
-  select:focus, 
   textarea:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.1);
-    background-color: var(--bg-white);
+    box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.15);
   }
 
-  /* Large Character Counter for Description */
-  .textarea-container {
-    position: relative;
-  }
-  
-  .char-count {
-    position: absolute;
-    bottom: 15px;
-    right: 20px;
-    font-size: 12px;
-    color: var(--text-sec);
-    pointer-events: none;
-  }
-
-  /* Image Upload Area */
-  .image-upload {
-    border: 1.5px dashed var(--border);
-    padding: 60px 20px;
-    text-align: center;
-    border-radius: 14px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    background-color: #fafafa;
-    overflow: hidden;
-  }
-  
-  .image-upload:hover {
-    background: #f1f1f3;
-    border-color: #a0a0a5;
-  }
-  
-  #preview {
-    max-width: 100%;
-    max-height: 300px;
-    display: none;
-    border-radius: 10px;
-    object-fit: cover;
-    margin-top: 15px;
-  }
-
-  #uploadText {
-    color: var(--primary);
-    font-weight: 500;
-    font-size: 16px;
-  }
-
-  /* Apple Style Primary Button */
-  .btn {
-    background: var(--primary);
-    color: white;
-    border: none;
-    padding: 18px;
-    width: 100%;
-    border-radius: 16px;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  
-  .btn:hover {
-    background: #0077ed;
-  }
-  
-  .btn:active {
-    transform: scale(0.97);
-  }
-
-  /* Flex Rows for Fields */
   .flex-row {
     display: flex;
     gap: 20px;
@@ -213,121 +229,160 @@
     flex: 1;
   }
 
-  @keyframes slideDown {
-    from { transform: translateY(-100%); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+  .upload-area {
+    border: 2px dashed var(--border);
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
   }
+  
+  .upload-area:hover {
+    border-color: var(--primary);
+    background: rgba(0, 113, 227, 0.05);
+  }
+
+  .btn {
+    background: var(--text-main);
+    color: var(--bg-main);
+    border: none;
+    padding: 20px;
+    width: 100%;
+    border-radius: 16px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+  }
+  
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+
 </style>
 </head>
 <body>
 
-<div class="success-banner" id="successBanner">Product listed successfully. Welcome to Seller Central.</div>
+<div class="bg-blobs">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+</div>
 
 <div class="main-wrapper">
-  <div class="content-section left-side">
-    <h1>List your new innovation.</h1>
-    <p>Complete the details on the right to register your new product and reach customers worldwide.</p>
-  }
+  
+  <div class="preview-section">
+    <div class="device-preview">
+      <div class="preview-image-container">
+        <span class="preview-placeholder" id="mainPlaceholder">No Image Selected</span>
+        <img id="mainPreviewImg" alt="Main View">
+      </div>
+      <div class="preview-info">
+        <h3 id="liveTitle">Product Title</h3>
+        <div class="preview-price">$<span id="livePrice">0.00</span></div>
+        <div class="preview-desc" id="liveDesc">Product description will appear here.</div>
+      </div>
+    </div>
   </div>
 
-  <div class="content-section">
+  <div class="form-section">
     <div class="form-card">
-      <h2>Product Details</h2>
+      <h2>List New Item</h2>
       <form id="productForm">
         
         <div class="form-group">
-          <label for="productName">Product Name</label>
-          <input type="text" id="productName" required placeholder="Give your product a powerful name.">
+          <label for="productName">Title</label>
+          <input type="text" id="productName" required placeholder="Enter product name">
         </div>
 
         <div class="form-group flex-row">
           <div class="flex-col">
-            <label for="price">Price (USD)</label>
-            <input type="number" id="price" required min="0" step="0.01" placeholder="e.g. 999.00">
+            <label for="price">Price USD</label>
+            <input type="number" id="price" required min="0" step="0.01" placeholder="99.00">
           </div>
           <div class="flex-col">
-            <label for="category">Category</label>
-            <select id="category" required>
-              <option value="" disabled selected>Select category...</option>
-              <option value="iphone">Smartphones</option>
-              <option value="mac">Computers</option>
-              <option value="wearables">Wearables</option>
-              <option value="accessories">Accessories</option>
-            </select>
+            <label for="stock">Inventory</label>
+            <input type="number" id="stock" min="0" placeholder="Available units">
           </div>
         </div>
 
         <div class="form-group">
-          <label>Product Images</label>
-          <div class="image-upload" id="dropZone" onclick="document.getElementById('imageInput').click()">
-            <span id="uploadText">Click or Drag to Upload Image</span>
+          <label>Product Image</label>
+          <div class="upload-area" onclick="document.getElementById('imageInput').click()">
+            <span id="uploadText" style="color: var(--primary); font-weight: 600;">Click to upload image</span>
             <input type="file" id="imageInput" accept="image/*" style="display: none;">
-            <img id="preview" alt="User uploaded image preview">
           </div>
         </div>
 
-        <div class="form-group textarea-container">
-          <label for="description">Product Description</label>
-          <textarea id="description" rows="6" required placeholder="Describe what makes your product remarkable..."></textarea>
-          <div class="char-count"><span id="currentChars">0</span> / 200</div>
+        <div class="form-group">
+          <label for="description">Story</label>
+          <textarea id="description" rows="5" required placeholder="Tell the story of your product"></textarea>
         </div>
 
-        <button type="submit" class="btn">Register Product</button>
+        <button type="submit" class="btn">Launch Product</button>
       </form>
     </div>
   </div>
+
 </div>
 
 <script>
-  const imageInput = document.getElementById('imageInput');
-  const preview = document.getElementById('preview');
-  const uploadText = document.getElementById('uploadText');
-  const description = document.getElementById('description');
-  const currentChars = document.getElementById('currentChars');
-  const productForm = document.getElementById('productForm');
-  const successBanner = document.getElementById('successBanner');
+  document.getElementById('productName').addEventListener('input', e => {
+    document.getElementById('liveTitle').textContent = e.target.value || 'Product Title';
+  });
+  document.getElementById('price').addEventListener('input', e => {
+    document.getElementById('livePrice').textContent = e.target.value || '0.00';
+  });
+  document.getElementById('description').addEventListener('input', e => {
+    document.getElementById('liveDesc').textContent = e.target.value || 'Product description will appear here.';
+  });
 
-  // Interactive Element 1: Image Upload Preview
+  const imageInput = document.getElementById('imageInput');
+  const mainPreviewImg = document.getElementById('mainPreviewImg');
+  const mainPlaceholder = document.getElementById('mainPlaceholder');
+  const uploadText = document.getElementById('uploadText');
+
   imageInput.addEventListener('change', function() {
     const file = this.files[0];
     if (file) {
       const reader = new FileReader();
-      reader.addEventListener('load', function() {
-        preview.src = this.result;
-        preview.style.display = 'block';
-        uploadText.style.display = 'none';
-      });
+      reader.onload = e => {
+        mainPreviewImg.src = e.target.result;
+        mainPreviewImg.style.display = 'block';
+        mainPlaceholder.style.display = 'none';
+        uploadText.textContent = 'Image Selected: ' + file.name;
+      };
       reader.readAsDataURL(file);
     }
   });
 
-  // Interactive Element 2: Dynamic Character Counter
-  description.addEventListener('input', function() {
-    const length = this.value.length;
-    if (length > 200) {
-      this.value = this.value.substring(0, 200);
-    }
-    currentChars.textContent = this.value.length;
-  });
-
-  // Interactive Element 3: Form Submission Success Feedback
-  productForm.addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent actual submission
+  document.getElementById('productForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const btn = e.target.querySelector('.btn');
+    const originalText = btn.textContent;
+    btn.textContent = 'Uploading...';
     
-    // Show Apple-style success banner
-    successBanner.style.display = 'block';
-    
-    // Scroll to top to see banner
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    
-    // Reset form after a delay and hide banner
     setTimeout(() => {
-      productForm.reset();
-      preview.style.display = 'none';
-      uploadText.style.display = 'inline-block';
-      currentChars.textContent = '0';
-      successBanner.style.display = 'none';
-    }, 3500); // Wait 3.5 seconds
+      btn.textContent = 'Launch Successful';
+      btn.style.background = '#32d74b';
+      btn.style.color = '#fff';
+      
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = 'var(--text-main)';
+        btn.style.color = 'var(--bg-main)';
+        e.target.reset();
+        mainPreviewImg.style.display = 'none';
+        mainPlaceholder.style.display = 'block';
+        uploadText.textContent = 'Click to upload image';
+        document.getElementById('liveTitle').textContent = 'Product Title';
+        document.getElementById('livePrice').textContent = '0.00';
+        document.getElementById('liveDesc').textContent = 'Product description will appear here.';
+      }, 2500);
+    }, 1200);
   });
 </script>
 </body>
