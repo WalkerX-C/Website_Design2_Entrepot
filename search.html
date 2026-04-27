@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login&search.css">
+    <title>Search & Filter Products</title>
+</head>
+<body>
+    <header class="top-header">
+        <div class="title-area">
+            <h1>MY Store</h1>
+            <p class="title-sub">A simple and modern place to explore electronic products.</p>
+        </div>
+
+        <div class="header-icon">
+            <a href="homepage.html">
+                <img src="home.png" alt="Home">
+            </a>
+        </div>
+    </header>
+
+    <nav class="nav-bar">
+        <a href="purchaser_login.html">Buyer Login</a>
+        <a href="search.html">Search</a>
+        <a href="seller_page.html">Product Registration</a>
+        <a href="seller_login.html">Seller Login</a>
+        <a href="bag.html">Bag (<span id="nav-bag-count">0</span>)</a>
+    </nav>
+
+    <main class="search-container">
+        <div class="search-header">
+            <input type="text" class="search-input" placeholder="Search accessories..." id="searchInput">
+            <select class="sort-dropdown" id="sortSelect">
+                <option value="relevancy">Sort by: Relevancy</option>
+                <option value="topSellers">Sort by: Popularity</option>
+                <option value="newest">Sort by: Newest</option>
+                <option value="priceLH">Sort by: Price (Low to High)</option>
+                <option value="priceHL">Sort by: Price (High to Low)</option>
+            </select>
+        </div>
+
+        <div class="layout-wrapper">
+            <aside class="filter-sidebar">
+                <div class="filter-group">
+                    <h3>Product Type</h3>
+                    <label class="filter-label"><input type="checkbox" value="Phone" class="type-filter"> Phone</label>
+                    <label class="filter-label"><input type="checkbox" value="Tablet" class="type-filter"> Tablet</label>
+                    <label class="filter-label"><input type="checkbox" value="Laptop" class="type-filter"> Laptop</label>
+                    <label class="filter-label"><input type="checkbox" value="Console" class="type-filter"> Console</label>
+                    <label class="filter-label"><input type="checkbox" value="Earbuds" class="type-filter"> Earbuds</label>
+                    <label class="filter-label"><input type="checkbox" value="Headphones" class="type-filter"> Headphones</label>
+                </div>
+            </aside>
+
+            <section class="product-grid" id="resultsGrid">
+            </section>
+        </div>
+    </main>
+
+    <script src="main.js"></script>
+</body>
+</html>

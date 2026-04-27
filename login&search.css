@@ -421,6 +421,8 @@ body {
 .login-footer a {
     color: var(--accent-blue);
 }
+<<<<<<< feature/search
+=======
 
 @mediaonlyscreenand(max-width:900px){
 .layout-wrapper {
@@ -464,3 +466,4 @@ align-items: flex-start;
 gap: 12px;
 }
 }
+>>>>>>> develop

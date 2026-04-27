@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login&search.css">
+    <title>Your Bag</title>
+</head>
+<body>
+    <header class="top-header">
+        <div class="title-area">
+            <h1>MY Store</h1>
+            <p class="title-sub">A simple and modern place to explore electronic products.</p>
+        </div>
+
+        <div class="header-icon">
+            <a href="homepage.html">
+                <img src="home.png" alt="Home">
+            </a>
+        </div>
+    </header>
+
+    <nav class="nav-bar">
+        <a href="purchaser_login.html">Buyer Login</a>
+        <a href="search.html">Search</a>
+        <a href="seller_page.html">Product Registration</a>
+        <a href="seller_login.html">Seller Login</a>
+        <a href="bag.html">Bag (<span id="nav-bag-count">0</span>)</a>
+    </nav>
+
+    <main class="bag-container">
+        <h1>Review your bag.</h1>
+        <p style="color: var(--text-secondary);">Free delivery and free returns.</p>
+        
+        <div id="bag-items-container">
+        </div>
+
+        <div class="bag-total">
+            Total: $<span id="bag-total-price">0.00</span>
+        </div>
+        <button id="checkoutBtn" class="btn-add" style="display:none; margin-top: 16px;" onclick="openCheckoutModal()">Checkout</button>
+    </main>
+
+    <div id="checkoutModal" class="modal-overlay" onclick="closeCheckoutModal(event)">
+        <div class="modal-box">
+            <button class="close-btn" onclick="closeCheckoutModalButton()">&times;</button>
+            <h2>Payment Information</h2>
+            <div class="modal-form">
+                <label>Total</label>
+                <input type="text" id="checkoutTotal" readonly>
+
+                <label>Bank Card Number</label>
+                <input type="text" id="checkoutCard" placeholder="Enter your bank card number">
+
+                <label>Receiver Name</label>
+                <input type="text" id="checkoutName" placeholder="Enter your name">
+
+                <label>Address</label>
+                <textarea id="checkoutAddress" placeholder="Enter your address"></textarea>
+
+                <button class="confirm-btn" onclick="confirmCheckout()">Purchase</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
