@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create ID</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fade-in">
+
+    <header class="main-header">
+        <div class="header-top">
+            <div class="title-area">
+                <h1>MY Store</h1>
+                <p>A simple and modern place to explore electronic products.</p>
+            </div>
+            
+            <div class="header-icon">
+                <a href="homepage.html" class="logo-box">
+                    MY
+                </a>
+            </div>
+        </div>
+
+        <nav class="main-nav">
+            <a href="purchaser_login.html">Buyer Login</a>
+            <a href="search.html">Search</a>
+            <a href="seller_page.html">Product Registration</a>
+            <a href="seller_login.html">Seller Login</a>
+        </nav>
+    </header>
+
+
+    <div class="page-wrapper">
+        <div class="form-container">
+            <div class="logo"></div>
+            <h2>Create Your ID</h2>
+            
+            <form id="register-form" onsubmit="return validateRegister(event)">
+                <div class="input-group">
+                    <input type="text" id="reg-name" placeholder="Full Name" required>
+                    <span class="error-msg" id="reg-name-error"></span>
+                </div>
+                
+                <div class="input-group">
+                    <input type="text" id="reg-address" placeholder="Address" required>
+                    <span class="error-msg" id="reg-address-error"></span>
+                </div>
+
+                <div class="input-group">
+                    <input type="tel" id="reg-phone" placeholder="Phone Number (China)" required>
+                    <span class="error-msg" id="reg-phone-error"></span>
+                </div>
+
+                <div class="input-group">
+                    <input type="email" id="reg-email" placeholder="Email (Ends with .com / .cn)" required>
+                    <span class="error-msg" id="reg-email-error"></span>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" id="reg-username" placeholder="Username" required>
+                    <span class="error-msg" id="reg-username-error"></span>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" id="reg-password" placeholder="Password" required>
+                    <span class="error-msg" id="reg-password-error"></span>
+                </div>
+                
+                <button type="submit" class="btn-primary">Continue</button>
+            </form>
+            
+            <div class="toggle-link">
+                <p>Already have an account? <a href="seller_login.html">Sign In.</a></p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
