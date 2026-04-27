@@ -113,9 +113,6 @@
     100% { transform: translate3d(15vw, -25vh, 0) scale(1.3); }
   }
 
-  /* =========================================
-     Homepage Header & Navigation Styles
-     ========================================= */
   .top-header,
   .nav-bar {
     width: 92%;
@@ -221,7 +218,6 @@
     border-radius: 9px;
   }
 
-  /* Responsive for Header & Nav */
   @media only screen and (max-width: 700px) {
     .top-header {
       flex-direction: column;
@@ -236,15 +232,12 @@
     .header-controls { flex-direction: row; }
   }
 
-  /* =========================================
-     Main Form & Preview Sections
-     ========================================= */
   .main-wrapper {
     display: flex;
     min-height: calc(100vh - 200px);
     width: 100%;
     box-sizing: border-box;
-    padding: 20px 40px 40px 40px; /* Reduced top padding as header is no longer fixed */
+    padding: 20px 40px 40px 40px;
     gap: 40px;
     position: relative;
     z-index: 10;
@@ -462,7 +455,6 @@
   <div class="blob blob-3"></div>
 </div>
 
-<!-- ================= Homepage Header ================= -->
 <header class="top-header">
   <div class="title-area">
       <h1>MY Store</h1>
@@ -478,7 +470,6 @@
   </div>
 </header>
 
-<!-- ================= Homepage Navigation ================= -->
 <nav class="nav-bar">
   <a href="purchaser_login.html">Buyer Login</a>
   <a href="search.html">Search</a>
@@ -521,6 +512,28 @@
             <label for="stock">Inventory</label>
             <input type="number" id="stock" min="0" placeholder="Available units">
           </div>
+        </div>
+
+        <div class="form-group flex-row">
+            <div class="flex-col">
+                <label for="model">Model</label>
+                <input type="text" id="model" required placeholder="Enter product model">
+            </div>
+            <div class="flex-col">
+                <label for="colour">Colour</label>
+                <input type="text" id="colour" required placeholder="Enter product colour">
+            </div>
+        </div>
+
+        <div class="form-group flex-row">
+            <div class="flex-col">
+                <label for="year">Year</label>
+                <input type="number" id="year" required placeholder="Enter product year">
+            </div>
+            <div class="flex-col">
+                <label for="location">Location</label>
+                <input type="text" id="location" required placeholder="Enter product location">
+            </div>
         </div>
 
         <div class="form-group">
