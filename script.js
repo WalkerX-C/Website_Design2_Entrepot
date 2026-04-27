@@ -8,26 +8,30 @@ function validateLogin(event) {
     const usernameError = document.getElementById('login-username-error');
     const passwordError = document.getElementById('login-password-error');
 
-    if (usernameInput.trim() === "" || usernameInput.length < 6) {
-        usernameError.innerHTML = "Username must be at least 6 characters.";
+    const loginRegex = /^[A-Za-z0-9]{6,}$/;
+
+    if (!loginRegex.test(usernameInput)) {
+        usernameError.innerHTML = "Username must be at least 6 alphanumeric characters.";
         isValid = false;
     } else {
         usernameError.innerHTML = "";
     }
 
-    if (passwordInput.trim() === "" || passwordInput.length < 6) {
-        passwordError.innerHTML = "Password must be at least 6 characters.";
+    if (!loginRegex.test(passwordInput)) {
+        passwordError.innerHTML = "Password must be at least 6 alphanumeric characters.";
         isValid = false;
     } else {
         passwordError.innerHTML = "";
     }
 
     if (isValid) {
-        alert("Sign In Successful!");
+        alert("Sign In Successful! Welcome back.");
+        setTimeout(function() {
+            window.location.href = "homepage.html"; 
+        }, 1500);
     }
     return isValid;
 }
-
 
 function validateRegister(event) {
     event.preventDefault();
@@ -55,6 +59,7 @@ function validateRegister(event) {
         nameError.innerHTML = "";
     }
 
+    // Regex for Address (Alphanumeric and Spaces)
     const addressRegex = /^[A-Za-z0-9\s]+$/;
     if (!addressRegex.test(addressInput)) {
         addressError.innerHTML = "Address should contain letters, numbers and spaces only.";
@@ -79,16 +84,15 @@ function validateRegister(event) {
         emailError.innerHTML = "";
     }
 
-    const usernameRegex = /^[A-Za-z0-9]{6,}$/;
-    if (!usernameRegex.test(usernameInput)) {
+    const authRegex = /^[A-Za-z0-9]{6,}$/;
+    if (!authRegex.test(usernameInput)) {
         usernameError.innerHTML = "Username must be at least 6 alphanumeric characters.";
         isValid = false;
     } else {
         usernameError.innerHTML = "";
     }
 
-    const passwordRegex = /^[A-Za-z0-9]{6,}$/;
-    if (!passwordRegex.test(passwordInput)) {
+    if (!authRegex.test(passwordInput)) {
         passwordError.innerHTML = "Password must be at least 6 alphanumeric characters.";
         isValid = false;
     } else {
@@ -96,8 +100,10 @@ function validateRegister(event) {
     }
 
     if (isValid) {
-        alert("Account Created Successfully! Redirecting to login...");
-        window.location.href = "index.html";
+        alert("Account Created Successfully! Redirecting to login page...");
+        setTimeout(function() {
+            window.location.href = "seller_login.html";
+        }, 1500);
     }
     
     return isValid;
