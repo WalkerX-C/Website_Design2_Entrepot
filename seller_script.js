@@ -59,7 +59,6 @@ function validateRegister(event) {
         nameError.innerHTML = "";
     }
 
-    // Regex for Address (Alphanumeric and Spaces)
     const addressRegex = /^[A-Za-z0-9\s]+$/;
     if (!addressRegex.test(addressInput)) {
         addressError.innerHTML = "Address should contain letters, numbers and spaces only.";
