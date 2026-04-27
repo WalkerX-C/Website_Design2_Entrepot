@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY Store - Homepage</title>
+    <link rel="stylesheet" href="homepage.css">
+</head>
+<body>
+
+    <header class="top-header">
+        <div class="title-area floating-island" data-delay="0.05">
+            <h1 class="fade-title">MY Store</h1>
+            <p class="title-sub">A simple and modern place to explore electronic products.</p>
+        </div>
+
+        <div class="header-icon floating-island" data-delay="0.16">
+            <a href="homepage.html">
+                <img src="home.png" alt="Home Icon">
+            </a>
+        </div>
+    </header>
+
+    <nav class="nav-bar floating-island" data-delay="0.10">
+        <a href="purchaser_login.html">Buyer Login</a>
+        <a href="search.html">Search</a>
+        <a href="seller_page.html">Product Registration</a>
+        <a href="seller_login.html">Seller Login</a>
+    </nav>
+
+    <section class="hero-section floating-island" data-delay="0.18">
+        <div class="hero-text">
+            <p class="hero-tag">New Season</p>
+            <h2>Best Seller of the Season</h2>
+            <p class="hero-desc">
+                Discover premium electronic products with a clean and modern shopping experience.
+            </p>
+            <button class="hero-btn" onclick="goToSearch()">Shop Now</button>
+        </div>
+
+        <div class="hero-image">
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Apple%20iPhone%2015%20Pro.jpg" alt="Hero Product">
+        </div>
+    </section>
+
+    <section class="section-title floating-island" data-delay="0.08">
+        <h2>Featured Products</h2>
+        <p>Popular choices from our latest collection.</p>
+    </section>
+
+    <section class="product-group">
+        <h3 class="group-title floating-island" data-delay="0.06">Hot Picks</h3>
+
+        <div class="product-grid">
+            <article class="product-card floating-island" data-delay="0.08">
+                <div class="product-image-wrap">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Apple%20iPhone%2015%20Pro.jpg" alt="iPhone Pro">
+                </div>
+                <h3>iPhone Pro</h3>
+                <p>Premium design and strong performance for daily use.</p>
+                <button onclick="openProductModal('iphone')">Learn More</button>
+            </article>
+
+            <article class="product-card floating-island" data-delay="0.14">
+                <div class="product-image-wrap">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/IPad%20Pro%20hello.jpeg" alt="iPad Pro">
+                </div>
+                <h3>iPad Pro</h3>
+                <p>Clean display, modern design, and a powerful tablet experience.</p>
+                <button onclick="openProductModal('ipad')">Learn More</button>
+            </article>
+
+            <article class="product-card floating-island" data-delay="0.20">
+                <div class="product-image-wrap">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Macbook%20Pro%202020%20color%20photography.jpg" alt="MacBook Pro">
+                </div>
+                <h3>MacBook Pro</h3>
+                <p>Elegant laptop design with a polished professional look.</p>
+                <button onclick="openProductModal('macbook')">Learn More</button>
+            </article>
+
+            <article class="product-card floating-island" data-delay="0.26">
+                <div class="product-image-wrap">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Playstation%205%20base%20edition%20with%20controller%20%28original%29.jpg" alt="PS5">
+                </div>
+                <h3>PS5</h3>
+                <p>Modern console hardware with a bold next-generation style.</p>
+                <button onclick="openProductModal('ps5')">Learn More</button>
+            </article>
+        </div>
+    </section>
+
+    <section class="product-group">
+        <h3 class="group-title floating-island" data-delay="0.06">More to Explore</h3>
+
+        <div class="product-grid">
+            <article class="product-card floating-island" data-delay="0.08">
+                <div class="product-image-wrap">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Apple%20airpods%20pro.jpg" alt="AirPods Pro">
+                </div>
+                <h3>AirPods Pro</h3>
+                <p>Compact, clean, and suitable for a modern wireless setup.</p>
+                <button onclick="openProductModal('airpodspro')">Learn More</button>
+            </article>
+
+            <article class="product-card floating-island" data-delay="0.14">
+                <div class="product-image-wrap">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Apple%20AirPods%20Max%207.jpg" alt="AirPods Max">
+                </div>
+                <h3>AirPods Max</h3>
+                <p>A premium over-ear audio product with a stylish appearance.</p>
+                <button onclick="openProductModal('airpodsmax')">Learn More</button>
+            </article>
+
+            <article class="product-card floating-island" data-delay="0.20">
+                <div class="product-image-wrap">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/IPhone%2015%20Pro.jpeg" alt="iPhone Detail">
+                </div>
+                <h3>iPhone Detail</h3>
+                <p>Minimal close-up styling for a cleaner product presentation.</p>
+                <button onclick="openProductModal('iphoneDetail')">Learn More</button>
+            </article>
+
+            <article class="product-card floating-island" data-delay="0.26">
+                <div class="product-image-wrap">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/IPad%20Pro%2013-inch%20backside.jpg" alt="iPad Pro 13">
+                </div>
+                <h3>iPad Pro 13</h3>
+                <p>Large screen productivity with a modern, refined body.</p>
+                <button onclick="openProductModal('ipad13')">Learn More</button>
+            </article>
+        </div>
+    </section>
+
+    <section class="section-title floating-island" data-delay="0.08">
+        <h2>Why Choose MY Store</h2>
+        <p>Simple, clear, and efficient for buyers and sellers.</p>
+    </section>
+
+    <section class="info-row">
+        <div class="info-box floating-island" data-delay="0.10">
+            <h3>Modern Design</h3>
+            <p>A clean interface that makes browsing easier and more enjoyable.</p>
+        </div>
+
+        <div class="info-box floating-island" data-delay="0.16">
+            <h3>Easy Navigation</h3>
+            <p>Users can quickly move between pages and find what they need.</p>
+        </div>
+
+        <div class="info-box floating-island" data-delay="0.22">
+            <h3>Popular Products</h3>
+            <p>We highlight trending electronic products in a simple and visual way.</p>
+        </div>
+    </section>
+
+    <footer class="footer floating-island" data-delay="0.08">
+        <p>© 2026 MY Store. All rights reserved.</p>
+    </footer>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="product-modal-overlay" onclick="closeProductModal(event)">
+        <button class="modal-close-outside" onclick="closeProductModalButton()">&times;</button>
+
+        <div class="product-modal-box">
+            <div class="modal-variant-bar-wrap">
+                <div class="modal-variant-bar" id="modalVariantBar"></div>
+            </div>
+
+            <div class="product-modal-top">
+                <div class="product-modal-main">
+                    <div class="product-modal-left">
+                        <img id="modalImage" src="" alt="Product">
+                    </div>
+
+                    <div class="product-modal-right">
+                        <div class="modal-top-bar">
+                            <div>
+                                <p id="modalLabel" class="modal-label"></p>
+                                <h2 id="modalTitle"></h2>
+                                <p id="modalPrice" class="modal-price"></p>
+                            </div>
+                            <button id="modalBuyBtn" class="modal-buy-btn">Buy</button>
+                        </div>
+
+                        <p id="modalDesc" class="modal-desc"></p>
+
+                        <div class="modal-block">
+                            <h3>Performance</h3>
+                            <p id="modalPerformance"></p>
+                        </div>
+
+                        <div class="modal-block">
+                            <h3>Options</h3>
+                            <p id="modalOptions"></p>
+                        </div>
+
+                        <div class="modal-block">
+                            <h3>Best For</h3>
+                            <p id="modalBestFor"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-modal-bottom">
+                <div class="advantage-item">
+                    <p class="advantage-title">Flexible payment</p>
+                    <p class="advantage-text">Installment options and budget-friendly checkout support.</p>
+                </div>
+                <div class="advantage-item">
+                    <p class="advantage-title">Trade-in support</p>
+                    <p class="advantage-text">Exchange eligible devices and reduce the next purchase cost.</p>
+                </div>
+                <div class="advantage-item">
+                    <p class="advantage-title">Fast delivery</p>
+                    <p class="advantage-text">Efficient shipping and a cleaner purchase experience.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="homepage.js"></script>
+</body>
+</html>
