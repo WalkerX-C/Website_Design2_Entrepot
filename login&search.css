@@ -421,3 +421,46 @@ body {
 .login-footer a {
     color: var(--accent-blue);
 }
+
+@mediaonlyscreenand(max-width:900px){
+.layout-wrapper {
+f
+lex-direction: column;
+5
+gap: 24px;
+}
+.filter-sidebar {
+width: 100%;
+}
+.search-header {
+f
+lex-direction: column;
+align-items: stretch;
+gap: 16px;
+}
+.search-input {
+width: 100%;
+font-size: 22px;
+}
+.sort-dropdown {
+width: 100%;
+}
+}
+@mediaonlyscreenand(max-width:600px){
+.top-header {
+f
+lex-direction: column;
+text-align: center;
+}
+.nav-bar {
+gap: 14px;
+padding: 14px 18px;
+}
+.product-grid {
+grid-template-columns: 1fr;
+}
+.bag-item {
+align-items: flex-start;
+gap: 12px;
+}
+}
