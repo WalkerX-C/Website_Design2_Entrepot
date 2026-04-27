@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - MY Store</title>
+    <link rel="stylesheet" href="seller_style.css">
+</head>
+<body class="fade-in">
+
+    <header class="main-header">
+        <div class="header-top">
+            <div class="title-area">
+                <h1>MY Store</h1>
+                <p>A simple and modern place to explore electronic products.</p>
+            </div>
+            <div class="header-icon">
+                <a href="homepage.html" class="logo-box">MY</a>
+            </div>
+        </div>
+
+        <nav class="main-nav">
+            <a href="purchaser_login.html">Buyer Login</a>
+            <a href="search.html">Search</a>
+            <a href="seller_page.html">Product Registration</a>
+            <a href="seller_login.html" class="active">Seller Login</a>
+        </nav>
+    </header>
+
+    <div class="page-wrapper">
+        <div class="form-container">
+            <div class="logo"></div>
+            <h2>Sign in to your account</h2>
+            
+            <form id="login-form" onsubmit="return validateLogin(event)">
+                <div class="input-group">
+                    <input type="text" id="login-username" placeholder="Username" required>
+                    <span class="error-msg" id="login-username-error"></span>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="login-password" placeholder="Password" required>
+                    <span class="error-msg" id="login-password-error"></span>
+                </div>
+                <button type="submit" class="btn-primary">Sign In</button>
+            </form>
+            
+            <div class="toggle-link">
+                <p>Don't have an ID? <a href="seller_register.html">Create yours now.</a></p>
+            </div>
+        </div>
+    </div>
+    <script src="seller_script.js"></script>
+</body>
+</html>
