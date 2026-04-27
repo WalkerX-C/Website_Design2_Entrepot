@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - MY Store</title>
+    <link rel="stylesheet" href="login&search.css">
+</head>
+<body class="login-body">
+    <header class="top-header">
+        <div class="title-area">
+            <h1>MY Store</h1>
+            <p class="title-sub">A simple and modern place to explore electronic products.</p>
+        </div>
+
+        <div class="header-icon">
+            <a href="homepage.html">
+                <img src="home.png" alt="Home">
+            </a>
+        </div>
+    </header>
+
+    <nav class="nav-bar">
+        <a href="purchaser_login.html">Buyer Login</a>
+        <a href="search.html">Search</a>
+        <a href="seller_page.html">Product Registration</a>
+        <a href="seller_login.html">Seller Login</a>
+        <a href="bag.html">Bag (<span id="nav-bag-count">0</span>)</a>
+    </nav>
+
+    <main class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <h1>Sign in to check out</h1>
+                <p>Use your MY Store ID to manage orders and track deliveries.</p>
+            </div>
+
+            <form id="login-form" novalidate>
+                <div class="input-group">
+                    <div class="field-wrapper">
+                        <input type="email" id="email" name="email" placeholder="MY Store ID (email)" required>
+                        <span class="error-msg" id="email-error">Please enter a valid email address.</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div class="field-wrapper">
+                        <input type="password" id="password" name="password" placeholder="Password" required>
+                        <span class="error-msg" id="pass-error">Please enter your password.</span>
+                    </div>
+                </div>
+
+                <div class="login-options">
+                    <label class="remember-me">
+                        <input type="checkbox" name="remember">
+                        <span>Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-link">Forgot password?</a>
+                </div>
+
+                <div class="login-actions">
+                    <button type="submit" class="confirm-btn login-btn">Sign in</button>
+                </div>
+            </form>
+
+            <div class="login-footer">
+                <p>Unregistered accounts will be registered automatically.</p>
+            </div>
+        </div>
+    </main>
+
+    <script src="main.js"></script>
+    <script>
+        // Login page validation
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const emailInput = document.getElementById('email');
+            const passInput = document.getElementById('password');
+            const emailError = document.getElementById('email-error');
+            const passError = document.getElementById('pass-error');
+            
+            // Simple email format validation
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            let isValid = true;
+
+            // Validate email
+            if (!emailPattern.test(emailInput.value)) {
+                emailInput.classList.add('input-invalid');
+                emailError.style.display = 'block';
+                isValid = false;
+            } else {
+                emailInput.classList.remove('input-invalid');
+                emailError.style.display = 'none';
+            }
+
+            // Validate password not empty
+            if (passInput.value.trim() === "") {
+                passInput.classList.add('input-invalid');
+                passError.style.display = 'block';
+                isValid = false;
+            } else {
+                passInput.classList.remove('input-invalid');
+                passError.style.display = 'none';
+            }
+
+            if (isValid) {
+                // Validated, simulate sign-in
+                alert('Validation passed. Signing you in...');
+                window.location.href = 'homepage.html';
+            }
+        });
+    </script>
+</body>
+</html>

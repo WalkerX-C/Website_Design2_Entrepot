@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY Store - Product</title>
+    <link rel="stylesheet" href="product.css">
+</head>
+<body>
+
+    <header class="top-header">
+        <nav class="nav-bar">
+            <a href="purchaser_login.html">Buyer Login</a>
+            <a href="search.html">Search</a>
+            <a href="seller_page.html">Product Registration</a>
+            <a href="seller_login.html">Seller Login</a>
+        </nav>
+
+        <div class="header-actions">
+            <a class="bag-top-link" href="bag.html">Bag</a>
+            <a class="header-icon" href="homepage.html">
+                <img src="home.png" alt="Home Icon">
+            </a>
+        </div>
+    </header>
+
+    <main class="product-page">
+        <section class="product-main-card">
+            <div class="product-left">
+                <div class="product-image-box">
+                    <img id="productImage" src="" alt="Product Image">
+                </div>
+            </div>
+
+            <div class="product-right">
+                <p class="product-tag" id="productTag">New</p>
+
+                <div class="variant-bar-wrap">
+                    <div class="variant-bar" id="variantBar"></div>
+                </div>
+
+                <div class="info-block main-title-block">
+                    <h1 id="productName">Product Name</h1>
+                    <p class="product-price-main" id="productPrice">From $999</p>
+                </div>
+
+                <div class="info-block">
+                    <h3>Model</h3>
+                    <p id="productModel">Model</p>
+                </div>
+
+                <div class="info-block">
+                    <h3>Description</h3>
+                    <p id="productDescription">Description</p>
+                </div>
+
+                <div class="info-block">
+                    <h3>Highlights</h3>
+                    <ul id="productHighlights" class="highlight-list"></ul>
+                </div>
+
+                <div class="info-block">
+                    <h3>Options</h3>
+                    <p id="productOptions">Options</p>
+                </div>
+
+                <div class="info-block buy-block">
+                    <button class="buy-btn" onclick="openBuyModal()">Buy Now</button>
+                    <button class="cart-btn" onclick="addCurrentToBag()">Add to Bag</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="buyModal" class="modal-overlay" onclick="closeBuyModal(event)">
+        <div class="modal-box">
+            <button class="close-btn" onclick="closeBuyModalButton()">&times;</button>
+
+            <h2>Purchase Information</h2>
+
+            <div class="modal-form">
+                <label>Product</label>
+                <input type="text" id="buyProductName" readonly>
+
+                <label>Variant</label>
+                <input type="text" id="buyVariantName" readonly>
+
+                <label>Price</label>
+                <input type="text" id="buyProductPrice" readonly>
+
+                <label>Quantity</label>
+                <input type="number" id="buyQuantity" min="1" value="1">
+
+                <label>Bank Card Number</label>
+                <input type="text" id="bankCard" placeholder="Enter your bank card number">
+
+                <label>Receiver Name</label>
+                <input type="text" id="receiverName" placeholder="Enter your name">
+
+                <label>Address</label>
+                <textarea id="receiverAddress" placeholder="Enter your address"></textarea>
+
+                <button class="confirm-btn" onclick="confirmPurchase()">Purchase</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="successMessage" class="success-message">
+        Purchase successful, please wait.
+    </div>
+
+    <script src="product.js"></script>
+</body>
+</html>
