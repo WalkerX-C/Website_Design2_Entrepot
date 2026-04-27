@@ -1,0 +1,434 @@
+:root {
+    --bg-color: #f5f5f7;
+    --nav-bg: rgba(255, 255, 255, 0.8);
+    --card-bg: #ffffff;
+    --text-primary: #1d1d1f;
+    --text-secondary: #86868b;
+    --text-muted: var(--text-secondary);
+    --link-color: #0066cc;
+    --accent-blue: #0071e3;
+    --border-color: #d2d2d7;
+    --font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+    color: var(--text-primary);
+    background-color: var(--bg-color);
+}
+
+/* Unified Header: left uses product style, right uses search style */
+.top-header {
+    width: 100%;
+    padding: 18px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-bar {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+}
+
+.nav-bar a {
+    text-decoration: none;
+    color: #222;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.nav-bar a:hover {
+    color: #0071e3;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.bag-top-link {
+    text-decoration: none;
+    color: var(--text-primary);
+    font-size: 12px;
+    margin: 0 15px;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.bag-top-link:hover {
+    opacity: 1;
+}
+
+/* Global Header */
+#globalheader {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    background: var(--nav-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-color);
+    height: 44px;
+}
+
+.nav-content {
+    max-width: 1024px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-primary);
+    font-size: 12px;
+    margin: 0 15px;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.nav-links a:hover { opacity: 1; }
+
+/* Search Layout */
+.search-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.search-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.search-input {
+    width: 60%;
+    padding: 15px;
+    font-size: 28px;
+    font-weight: 600;
+    border: none;
+    background: transparent;
+    outline: none;
+    color: var(--text-primary);
+}
+
+.sort-dropdown {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--card-bg);
+}
+
+/* Layout: Sidebar + Grid */
+.layout-wrapper {
+    display: flex;
+    gap: 40px;
+}
+
+/* Filter Tools (Referencing HTML File) */
+.filter-sidebar {
+    width: 240px;
+    flex-shrink: 0;
+}
+
+.filter-group h3 {
+    font-size: 14px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.filter-label {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    cursor: pointer;
+}
+
+.filter-label input {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+/* Product Grid */
+.product-grid {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 30px;
+}
+
+.product-card {
+    display: block;
+    background: var(--card-bg);
+    border-radius: 18px;
+    padding: 30px 20px;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 12px;
+}
+
+.product-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.product-price {
+    font-size: 14px;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+}
+
+.btn-add {
+    background: var(--link-color);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-add:hover { background: #005bb5; }
+
+/* Bag Page Styles */
+.bag-container { max-width: 800px; margin: 60px auto; padding: 0 20px; }
+.bag-item { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid var(--border-color); }
+.bag-item img { width: 80px; border-radius: 8px; margin-right: 20px; }
+.bag-item-info { flex-grow: 1; }
+.bag-item-title { font-size: 18px; font-weight: 600; }
+.bag-item-price { font-size: 16px; }
+.bag-total { text-align: right; font-size: 24px; font-weight: 600; margin-top: 30px; }
+.remove-btn { color: #e30000; background: none; border: none; cursor: pointer; font-size: 12px; margin-top: 5px; }
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 1000;
+    padding: 30px 16px;
+    overflow-y: auto;
+}
+
+.modal-overlay.show {
+    display: block;
+}
+
+.modal-box {
+    width: 92%;
+    max-width: 620px;
+    margin: 40px auto;
+    background-color: white;
+    border-radius: 28px;
+    padding: 28px 24px 24px 24px;
+    position: relative;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+}
+
+.close-btn {
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+    background-color: #e7e7ec;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.modal-box h2 {
+    margin-top: 8px;
+    margin-bottom: 20px;
+    font-size: 32px;
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modal-form label {
+    font-size: 15px;
+    font-weight: bold;
+    color: #333;
+}
+
+.modal-form input,
+.modal-form textarea {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #d0d0d7;
+    border-radius: 14px;
+    font-size: 16px;
+    outline: none;
+}
+
+.modal-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.confirm-btn {
+    background: var(--link-color);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* --- 登录页专用样式 --- */
+.login-body {
+    background-color: #ffffff; /* Apple ID 登录通常使用纯白背景以显专业 */
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 52px);
+    padding: 40px 20px;
+}
+
+.login-card {
+    max-width: 460px;
+    width: 100%;
+    text-align: center;
+}
+
+.login-header h1 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+}
+
+.login-header p {
+    font-size: 17px;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+}
+
+.input-group {
+    margin-bottom: 14px;
+    text-align: left;
+}
+
+.field-wrapper {
+    position: relative;
+}
+
+.field-wrapper input {
+    width: 100%;
+    padding: 18px 16px;
+    font-size: 17px;
+    border: 1px solid #d2d2d7;
+    border-radius: 12px;
+    background: #fff;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.field-wrapper input:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.1);
+}
+
+/* 校验失败状态 */
+.input-invalid {
+    border-color: #e30000 !important;
+}
+
+.error-msg {
+    color: #e30000;
+    font-size: 12px;
+    margin-top: 6px;
+    display: none; /* 默认隐藏 */
+}
+
+.login-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0 30px;
+    font-size: 14px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: var(--text-muted);
+}
+
+.forgot-link {
+    color: var(--accent-blue);
+}
+
+.login-btn {
+    width: 100%;
+    padding: 18px;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.login-footer {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #d2d2d7;
+    font-size: 14px;
+}
+
+.login-footer a {
+    color: var(--accent-blue);
+}
